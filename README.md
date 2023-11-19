@@ -1,34 +1,34 @@
-学習分析ノート GabuNote
+学習分析ノート GabuNote<br>
 LAMP上で動作します
 
-【データベースの指定】
+【データベースの指定】<br>
 php/include_file/pdo_data.php
 
-【テーブル作成】
-①MySQLの場合：
-CREATE TABLE study (
-id INT AUTO_INCREMENT PRIMARY KEY,
-createday DATETIME,
-parentpath VARCHAR(255),
-name VARCHAR(255),
-type TINYINT,
-studyday DATE,
-studytype TINYINT,
-studytime INT,
-additionalstudytime INT,
-achievement TINYINT,
-studymemo MEDIUMTEXT);
+【テーブル作成】<br>
+①MySQLの場合：<br>
+CREATE TABLE study (<br>
+id INT AUTO_INCREMENT PRIMARY KEY,<br>
+createday DATETIME,<br>
+parentpath VARCHAR(255),<br>
+name VARCHAR(255),<br>
+type TINYINT,<br>
+studyday DATE,<br>
+studytype TINYINT,<br>
+studytime INT,<br>
+additionalstudytime INT,<br>
+achievement TINYINT,<br>
+studymemo MEDIUMTEXT);<br>
 
-②SQLiteの場合：
-sqlite> create table study (
-   ...> id integer primary key autoincrement,
-   ...> createday text,
-   ...> parentpath text,
-   ...> name text,
-   ...> type integer,
-   ...> studyday text,
-   ...> studytype integer,
-   ...> studytime integer,
-   ...> additionalstudytime integer,
-   ...> achievement integer,
+②SQLiteの場合：<br>
+sqlite> create table study (<br>
+   ...> id integer primary key autoincrement,<br>
+   ...> createday text,<br>
+   ...> parentpath text,<br>
+   ...> name text,<br>
+   ...> type integer,<br>
+   ...> studyday text,<br>
+   ...> studytype integer,<br>
+   ...> studytime integer,<br>
+   ...> additionalstudytime integer,<br>
+   ...> achievement integer,<br>
    ...> studymemo text);
