@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>学習分析ノート GabuNote</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@^1"></script>
+        <script src="./javascript/record_list.js"></script>
+        <script src="./javascript/folder_area.js"></script>
+        <script src="./javascript/input_record_area.js"></script>
+        <link rel="stylesheet" href="./css/pagestyle.css" type="text/css">
+        <link rel="stylesheet" href="./css/partsdesign.css" type="text/css">
+    </head>
+    <body>
+        <header>
+            <span>学習分析ノート</span>
+            <span id="titlename">GabuNote</span>
+            <hr>
+        </header>
+        <main class="flexbox_row">
+            <div class="flexitem50 flexitem_grow flexbox_column" id="record_list_area">
+                <div class="flexbox_row border_none areabar">
+                    <span class="flexitem_grow areaname">レコードリスト</span>
+                    <button type="button" id="go_folder">フォルダ</button>
+                </div>
+                <div class="flexbox_row border_none">
+                    <span>達成度:</span>
+                    <select id="record_list_achievement">
+                        <option value="-1">－</option>
+                        <option value="5">5：手応えあり！</option>
+                        <option value="4">4：つかみ始めた</option>
+                        <option value="3">3：OK</option>
+                        <option value="2">2：あともう少し</option>
+                        <option value="1">1：少し学べた</option>
+                        <option value="0">0：学習開始</option>
+                    </select>
+                </div>
+                <div class="flexitem_grow scroll border_none" id="record_list">
+                </div>
+            </div>
+            <div class="flexitem50 flexitem_grow flexbox_column" id="folder_block">
+                <div class="flexbox_row border_none areabar">
+                    <button type="button" id="go_recordlist">リスト</button>
+                    <span class="flexitem_grow areaname">フォルダ操作エリア</span>
+                    <select id="graph_slect">
+                        <option value="1">学習比率グラフ</option>
+                        <option value="0">達成度グラフ</option>
+                    </select>
+                </div>
+                <canvas id="folderChart"></canvas>
+                <canvas id="recordChart"></canvas>
+                <div class="flexbox_row border_none">
+                    <button type="button" id="homebtn">HOME</button>
+                    <button type="button" id="returnbtn">UP</button>
+                    <input type="text" disabled value="/" class="flexitem_grow" id="parentpath_view" />
+                    <button type="button" id="next_view_btn">移動</button>
+                    <span>上位フォルダ：</span>
+                    <select class="flexitem_grow" id="ancestor_folders">
+                    </select>
+                </div>
+                <div class="flexbox_row border_none">
+                    <span>フォルダ名：</span>
+                    <input type="text" class="flexitem_grow" id="folder_name"/>
+                    <button type="button" id="changenamebtn">変更</button>
+                </div>
+                <div class="flexitem_grow flexbox_row hidden border_none">
+                    <div class="flexitem50 flexbox_column">
+                        <h5>学習フォルダ</h5>
+                        <div class="flexbox_row border_none">
+                            <button type="button" id="add_folder">新規</button>
+                        </div>
+                        <div id="totaltime_area">
+                        </div>
+                        <div class="flexitem_grow scroll border_none" id="folder_selector">
+                        </div>
+                    </div>
+                    <div class="flexitem50 flexbox_column">
+                        <h5>学習レコード</h5>
+                        <div class="flexbox_row border_none">
+                            <button type="button" id="new_record">新規</button>
+                        </div>
+                        <div id="achievement_area">
+                        </div>
+                        <div class="flexitem_grow scroll border_none" id="record_selector">
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            <div class="flexitem50 flexitem_grow flexbox_column" id="edit_area">
+                <div class="flexbox_row border_none areabar">
+                    <button type="button" id="edit_return">戻る</button>
+                    <span class="flexitem_grow areaname">学習レコード編集エリア</span>
+                </div>
+                <div class="border_none">
+                    <div class="border_none">
+                        上位フォルダ：<span id="parentfoldername"></span><br>
+                        学習フォルダ：<span id="foldername"></span><br>
+                        学習日：<input type="date" id="studyday"/>
+                        達成度:<select id="input_achievement">
+                            <option value="-1">－</option>
+                            <option value="5">5：手応えあり！</option>
+                            <option value="4">4：つかみ始めた</option>
+                            <option value="3">3：OK</option>
+                            <option value="2">2：あともう少し</option>
+                            <option value="1">1：少し学べた</option>
+                            <option value="0">0：学習開始</option>
+                    </select><br>
+                    学習タイプ：<select id="studytype">
+                        <option value="-1">－</option>
+                        <option value="1">テキスト学習</option>
+                        <option value="2">問題学習</option>
+                        <option value="3">講義形式</option>
+                        <option value="4">試験形式</option>
+                        <option value="5">実践</option>
+                        <option value="0">その他</option>
+                    </select><br>
+                    </div>
+                    <div class="border_none" id="input_date_area">
+                        学習時間　：<input type="number" max="99" min="0" value="0" id="studytime_h" />時間<input type="number" max="59" min="0" value="0" id="studytime_m" />分<input type="number" max="59" min="0" value="0" id="studytime_s" />秒<br>
+                        見直し時間：<input type="number" max="99" min="0" value="0" id="add_studytime_h" />時間<input type="number" max="59" min="0" value="0" id="add_studytime_m" />分<input type="number" max="59" min="0" value="0" id="add_studytime_s" />秒
+                    </div>
+                </div>
+                <div class="flexbox_row border_none">
+                    <span>タイトル：</span>
+                    <input type="text" class="flexitem_grow" id="title" />
+                    <button type="submit" id="submit_btn">登録</button>
+                </div>
+                <div id="record_info">
+                    【書き込みチェック用】<br>
+                    親フォルダ：<input type="text" disabled id="parent_path" /><br>
+                    レコードID：<input type="text" disabled value="-1" id="record_id" />
+                </div>
+                <textarea class="flexitem_grow" id="memo_area"></textarea>
+            </div>
+        </main>
+        <footer>
+            <hr>
+            Study! Note! Analyzed!
+        </footer>
+    </body>
+</html>

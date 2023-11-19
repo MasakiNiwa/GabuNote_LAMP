@@ -1,0 +1,89 @@
+main *{
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin: 2px;
+    font-size: x-small;
+}
+
+html, body, main{
+    height: 95%;
+}
+
+#edit_area{
+    display: none;
+}
+
+#go_recordlist, #go_folder{
+    display: none;
+}
+
+@media screen and (max-height:640px) {
+    header, footer{
+        display: none;
+    }
+    html, body, main{
+        height: 99%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    #record_list_area{
+        display: none;
+    }
+    #go_recordlist{
+        display:inline;
+    }
+}
+
+header, footer{
+    text-align: center;
+}
+
+footer{
+    font-family: cursive;
+}
+
+.areabar{
+    background-color: bisque;
+}
+
+.areaname{
+    font-weight: bold;
+    text-align: center;
+}
+
+h5{
+    background-color: rgb(200, 250, 250);
+    text-align: center;
+}
+
+button{
+    background-color: aliceblue;
+}
+
+textarea{
+    resize: none;
+    border: 3px ridge;
+}
+
+select{
+    text-align: left;
+}
+
+progress{
+    width: 40%;
+    background-color: lightgray;
+    color: gold;
+}
+
+progress::-webkit-progress-bar{
+    background-color: lightgray;
+}
+
+progress::-webkit-progress-value{
+    background-color: gold;
+}
+
+b, span, .border_none{
+    border: none;
+}

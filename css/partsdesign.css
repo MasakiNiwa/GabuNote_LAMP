@@ -1,0 +1,71 @@
+.flexbox_row{
+    display: flex;
+}
+
+.flexbox_column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flexitem50{
+    flex-basis: 50%;
+}
+
+.flexitem_grow{
+    flex-grow: 1;
+}
+
+.hidden{
+    overflow: hidden;
+}
+
+.scroll{
+    overflow-y: scroll;
+}
+
+#input_date_area>input{
+    text-align: right;
+}
+
+#record_info{
+    background-color: lightgray;
+    display: none;
+}
+
+#folderChart, #recordChart{
+    border: 2px double pink;
+    min-height: 25%;
+    max-height: 25%;
+    max-width: 100%;
+}
+
+.delete_bar{
+    background-color: lavender;
+}
+
+.folder_delete_btn, .record_delete_btn{
+    background-color: lavender;
+    color: black;
+}
+
+.folder_delete_btn:hover, .record_delete_btn:hover{
+    background-color: red;
+    color: white;
+}
+
+#parentpath_view, #next_view_btn{
+    display: none;
+}
+
+#titlename{
+    font-family: cursive;
+}
+
+#totaltime_area, #achievement_area{
+    text-align: center;
+}
+
+#login_form{
+    margin: auto;
+    background-color: azure;
+}
