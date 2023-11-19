@@ -1,5 +1,5 @@
 学習分析ノート GabuNote<br>
-LAMP上で動作します
+LAMP環境で動作します
 
 【データベースの指定】<br>
 php/include_file/pdo_data.php
